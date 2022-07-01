@@ -1,0 +1,29 @@
+
+1. Add new author
+2. POST /authors
+3. JSON {"name": "Jack London"}
+4. Text: "New Author has been added :)" (200 OK)
+
+
+1. Get author
+2. GET /authors?id=1
+3. id=1
+4. JSON {"name": "George Orwell"} (200 OK)
+
+
+1. Delete author
+2. DELETE /authors/3
+3. None
+4. Text: "Author has been deleted" (200 OK)
+
+
+1. Update author
+2. POST /authors/5
+3. id, JSON {"name": "Jack Black"}
+4. JSON {"id": 5, "name": "Jack Black"} (200 OK)
+
+
+1. Add new author
+2. POST /authors
+3. JSON {"name": "Jack London"}
+4. Text: "This Author already exists!" (200 OK)

@@ -1,0 +1,2 @@
+main-class: src.BoxMachine
+class-path: bin/
