@@ -1,34 +1,35 @@
 package com.example.demo.entities;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long user_id;
 
-    private String name;
-    private String email;
+    private String username;
+
     private String password;
 
-    @Enumerated(value = EnumType.STRING)
-    private Role role;
+    private String email;
 
-    @Enumerated(value = EnumType.STRING)
-    private Status status;
+    @ManyToMany
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Collection<RoleEntity> roles;
 
     public UserEntity() {
     }
 
-    public UserEntity(Long user_id, String name, String email, String password, Role role, Status status) {
-        this.user_id = user_id;
-        this.name = name;
-        this.email = email;
+    public UserEntity(String username, String password, String email) {
+        this.username = username;
         this.password = password;
-        this.role = role;
-        this.status = status;
+        this.email = email;
     }
 
     public Long getUser_id() {
@@ -39,20 +40,12 @@ public class UserEntity {
         this.user_id = user_id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -63,19 +56,19 @@ public class UserEntity {
         this.password = password;
     }
 
-    public Role getRole() {
-        return role;
+    public String getEmail() {
+        return email;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public Status getStatus() {
-        return status;
+    public Collection<RoleEntity> getRoles() {
+        return roles;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setRoles(Collection<RoleEntity> roles) {
+        this.roles = roles;
     }
 }

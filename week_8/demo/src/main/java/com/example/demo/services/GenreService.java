@@ -3,7 +3,7 @@ package com.example.demo.services;
 import com.example.demo.entities.GenreEntity;
 import com.example.demo.exceptions.GenreAlreadyExistException;
 import com.example.demo.exceptions.GenreNotFoundException;
-import com.example.demo.models.Genre;
+import com.example.demo.DTO.GenreDTO;
 import com.example.demo.repositories.GenreRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,12 +21,12 @@ public class GenreService {
     }
 
 
-    public Genre getOne(Long id) throws GenreNotFoundException {
+    public GenreDTO getOne(Long id) throws GenreNotFoundException {
         GenreEntity genre = genreRepo.findById(id).get();
         if(genre == null){
             throw new GenreNotFoundException("This Genre not fount :(");
         }
-        return Genre.toModel(genre);
+        return GenreDTO.toModel(genre);
     }
 
 
@@ -37,7 +37,7 @@ public class GenreService {
     }
 
 
-    public Genre update(Long id, GenreEntity editedGenre) throws GenreNotFoundException {
+    public GenreDTO update(Long id, GenreEntity editedGenre) throws GenreNotFoundException {
         GenreEntity genre = genreRepo.findById(id).get();
         if(genre == null){
             throw new GenreNotFoundException("This Genre not found :(");
@@ -45,6 +45,6 @@ public class GenreService {
         genre.setGenre(editedGenre.getGenre());
         genreRepo.save(genre);
 
-        return Genre.toModel(genre);
+        return GenreDTO.toModel(genre);
     }
 }

@@ -3,10 +3,9 @@ package com.example.demo.services;
 import com.example.demo.entities.AuthorEntity;
 import com.example.demo.exceptions.AuthorAlreadyExistException;
 import com.example.demo.exceptions.AuthorNotFoundException;
-import com.example.demo.models.Author;
+import com.example.demo.DTO.AuthorDTO;
 import com.example.demo.repositories.AuthorRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,12 +20,12 @@ public class AuthorService {
         return authorRepo.save(author);
     }
 
-    public Author getOne(Long id) throws AuthorNotFoundException {
+    public AuthorDTO getOne(Long id) throws AuthorNotFoundException {
         AuthorEntity author = authorRepo.findById(id).get();
         if(author == null){
             throw new AuthorNotFoundException("This Author not found :(");
         }
-        return Author.toModel(author);
+        return AuthorDTO.toModel(author);
     }
 
     public String delete(Long id){
@@ -35,7 +34,7 @@ public class AuthorService {
         return author.getName();
     }
 
-    public Author update(Long id, AuthorEntity editedAuthor) throws AuthorNotFoundException {
+    public AuthorDTO update(Long id, AuthorEntity editedAuthor) throws AuthorNotFoundException {
         AuthorEntity author = authorRepo.findById(id).get();
         if(author == null){
             throw new AuthorNotFoundException("This Author not found :(");
@@ -43,6 +42,6 @@ public class AuthorService {
         author.setName(editedAuthor.getName());
         authorRepo.save(author);
 
-        return Author.toModel(author);
+        return AuthorDTO.toModel(author);
     }
 }

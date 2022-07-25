@@ -1,17 +1,17 @@
-package com.example.demo.models;
+package com.example.demo.DTO;
 
 
 import com.example.demo.entities.SalesEntity;
 
-public class Sale {
+public class SaleDTO {
     private String date;
     private String book;
     private String employee;
     private Integer amount;
     private Float sum;
 
-    public static Sale toModel(SalesEntity salesEntity){
-        Sale model = new Sale();
+    public static SaleDTO toModel(SalesEntity salesEntity){
+        SaleDTO model = new SaleDTO();
         model.setDate(salesEntity.getDate());
         model.setBook(salesEntity.getBook().getTitle());
         model.setEmployee(salesEntity.getEmployee().getName());
@@ -21,10 +21,10 @@ public class Sale {
         return model;
     }
 
-    public Sale() {
+    public SaleDTO() {
     }
 
-    public Sale(String date, String book, String employee, Integer amount, Float sum) {
+    public SaleDTO(String date, String book, String employee, Integer amount, Float sum) {
         this.date = date;
         this.book = book;
         this.employee = employee;

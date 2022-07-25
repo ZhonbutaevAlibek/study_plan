@@ -4,8 +4,7 @@ import com.example.demo.entities.EmployeeEntity;
 import com.example.demo.entities.PostEntity;
 import com.example.demo.exceptions.EmployeeAlreadyExistException;
 import com.example.demo.exceptions.EmployeeNotFoundException;
-import com.example.demo.exceptions.PostNotFoundException;
-import com.example.demo.models.Employee;
+import com.example.demo.DTO.EmployeeDTO;
 import com.example.demo.repositories.EmployeeRepo;
 import com.example.demo.repositories.PostRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +28,12 @@ public class EmployeeService {
         return employeeRepo.save(employee);
     }
 
-    public Employee getOne(Long id) throws EmployeeNotFoundException {
+    public EmployeeDTO getOne(Long id) throws EmployeeNotFoundException {
         EmployeeEntity employee = employeeRepo.findById(id).get();
         if(employee == null){
             throw new EmployeeNotFoundException("This Employee not found :(");
         }
-        return Employee.toModel(employee);
+        return EmployeeDTO.toModel(employee);
     }
 
     public String deleteOne(Long id) throws EmployeeNotFoundException {
@@ -46,9 +45,9 @@ public class EmployeeService {
         return employee.getName() + " has been deleted.";
     }
 
-    public Employee update(EmployeeEntity editedEmployee,
-                                 Long employee_id,
-                                 Long post_id) throws EmployeeNotFoundException {
+    public EmployeeDTO update(EmployeeEntity editedEmployee,
+                              Long employee_id,
+                              Long post_id) throws EmployeeNotFoundException {
 
         EmployeeEntity employee = employeeRepo.findById(employee_id).get();
         PostEntity post = postRepo.findById(post_id).get();
@@ -64,6 +63,6 @@ public class EmployeeService {
         employee.setPost(post);
         employeeRepo.save(employee);
 
-        return Employee.toModel(employee);
+        return EmployeeDTO.toModel(employee);
     }
 }

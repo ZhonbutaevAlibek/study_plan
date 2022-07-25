@@ -1,8 +1,8 @@
-package com.example.demo.models;
+package com.example.demo.DTO;
 
 import com.example.demo.entities.BookEntity;
 
-public class Book {
+public class BookDTO {
     private String title;
     private String author;
     private String genre;
@@ -10,8 +10,8 @@ public class Book {
     private Float price;
     private Integer amount;
 
-    public static Book toModel(BookEntity bookEntity){
-        Book model = new Book();
+    public static BookDTO toModel(BookEntity bookEntity){
+        BookDTO model = new BookDTO();
         model.setTitle(bookEntity.getTitle());
         model.setAuthor(bookEntity.getAuthor().getName());
         model.setGenre(bookEntity.getGenre().getGenre());
@@ -21,7 +21,7 @@ public class Book {
         return model;
     }
 
-    public Book() {
+    public BookDTO() {
     }
 
     public String getTitle() {

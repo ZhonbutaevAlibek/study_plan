@@ -3,15 +3,12 @@ package com.example.demo.services;
 import com.example.demo.entities.*;
 import com.example.demo.exceptions.BookAlreadyExistException;
 import com.example.demo.exceptions.BookNotFoundException;
-import com.example.demo.exceptions.EmployeeNotFoundException;
-import com.example.demo.models.Book;
+import com.example.demo.DTO.BookDTO;
 import com.example.demo.repositories.AuthorRepo;
 import com.example.demo.repositories.BookRepo;
 import com.example.demo.repositories.GenreRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 
 @Service
 public class BookService {
@@ -24,7 +21,7 @@ public class BookService {
     @Autowired
     private GenreRepo genreRepo;
 
-    public Book addBook(BookEntity book, Long authorId, Long genreId) throws BookAlreadyExistException {
+    public BookDTO addBook(BookEntity book, Long authorId, Long genreId) throws BookAlreadyExistException {
         if(bookRepo.findByTitle(book.getTitle()) != null){
             throw new BookAlreadyExistException("This Book already exist!");
         }
@@ -35,27 +32,27 @@ public class BookService {
         book.setGenre(genre);
         bookRepo.save(book);
 
-        return Book.toModel(book);
+        return BookDTO.toModel(book);
     }
 
-    public Book getOne(Long id) throws BookNotFoundException {
+    public BookDTO getOne(Long id) throws BookNotFoundException {
         BookEntity book = bookRepo.findById(id).get();
         if(book == null){
             throw new BookNotFoundException("This Book not found :(");
         }
-        return Book.toModel(book);
+        return BookDTO.toModel(book);
     }
 
-    public Book delete(Long id){
+    public BookDTO delete(Long id){
         BookEntity book = bookRepo.findById(id).get();
         bookRepo.deleteById(id);
 
-        return Book.toModel(book);
+        return BookDTO.toModel(book);
     }
 
-    public Book update(BookEntity editedBook,
-                                 Long book_id,
-                                 Long author_id, Long genre_id) throws BookNotFoundException {
+    public BookDTO update(BookEntity editedBook,
+                          Long book_id,
+                          Long author_id, Long genre_id) throws BookNotFoundException {
 
         BookEntity book = bookRepo.findById(book_id).get();
         AuthorEntity author = authorRepo.findById(author_id).get();
@@ -73,7 +70,7 @@ public class BookService {
         book.setAmount(editedBook.getAmount());
         bookRepo.save(book);
 
-        return Book.toModel(book);
+        return BookDTO.toModel(book);
     }
 
 }

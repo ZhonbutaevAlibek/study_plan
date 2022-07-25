@@ -1,21 +1,20 @@
-package com.example.demo.models;
+package com.example.demo.DTO;
 
-import com.example.demo.entities.AuthorEntity;
 import com.example.demo.entities.GenreEntity;
 
-public class Genre {
+public class GenreDTO {
     private String genre;
 
-    public static Genre toModel(GenreEntity entity){
-        Genre model = new Genre();
+    public static GenreDTO toModel(GenreEntity entity){
+        GenreDTO model = new GenreDTO();
         model.setGenre(entity.getGenre());
         return model;
     }
 
-    public Genre() {
+    public GenreDTO() {
     }
 
-    public Genre(String genre) {
+    public GenreDTO(String genre) {
         this.genre = genre;
     }
 

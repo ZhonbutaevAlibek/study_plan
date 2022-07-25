@@ -1,20 +1,20 @@
-package com.example.demo.models;
+package com.example.demo.DTO;
 
 import com.example.demo.entities.AuthorEntity;
 
-public class Author {
+public class AuthorDTO {
     private String name;
 
-    public static Author toModel(AuthorEntity entity){
-        Author model = new Author();
+    public static AuthorDTO toModel(AuthorEntity entity){
+        AuthorDTO model = new AuthorDTO();
         model.setName(entity.getName());
         return model;
     }
 
-    public Author() {
+    public AuthorDTO() {
     }
 
-    public Author(String name) {
+    public AuthorDTO(String name) {
         this.name = name;
     }
 

@@ -1,16 +1,16 @@
-package com.example.demo.models;
+package com.example.demo.DTO;
 
 
 import com.example.demo.entities.EmployeeEntity;
 
-public class Employee {
+public class EmployeeDTO {
     private String name;
     private String address;
     private String phone;
     private String post;
 
-    public static Employee toModel(EmployeeEntity entity){
-        Employee model = new Employee();
+    public static EmployeeDTO toModel(EmployeeEntity entity){
+        EmployeeDTO model = new EmployeeDTO();
         model.setName(entity.getName());
         model.setAddress(entity.getAddress());
         model.setPhone(entity.getPhone());
@@ -18,7 +18,7 @@ public class Employee {
         return model;
     }
 
-    public Employee() {
+    public EmployeeDTO() {
     }
 
     public String getName() {

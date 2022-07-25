@@ -1,12 +1,8 @@
 package com.example.demo.services;
 
 import com.example.demo.entities.*;
-import com.example.demo.exceptions.BookAlreadyExistException;
-import com.example.demo.exceptions.BookNotFoundException;
-import com.example.demo.exceptions.SaleAlreadyExistException;
 import com.example.demo.exceptions.SaleNotFoundException;
-import com.example.demo.models.Book;
-import com.example.demo.models.Sale;
+import com.example.demo.DTO.SaleDTO;
 import com.example.demo.repositories.BookRepo;
 import com.example.demo.repositories.EmployeeRepo;
 import com.example.demo.repositories.SaleRepo;
@@ -24,7 +20,7 @@ public class SaleService {
     @Autowired
     EmployeeRepo employeeRepo;
 
-    public Sale addSale(SalesEntity sale, Long book_id, Long employee_id) {
+    public SaleDTO addSale(SalesEntity sale, Long book_id, Long employee_id) {
 
         BookEntity book = bookRepo.findById(book_id).get();
         EmployeeEntity employee = employeeRepo.findById(employee_id).get();
@@ -32,16 +28,16 @@ public class SaleService {
         sale.setEmployee(employee);
         saleRepo.save(sale);
 
-        return Sale.toModel(sale);
+        return SaleDTO.toModel(sale);
     }
 
-    public Sale getOne(Long id) throws SaleNotFoundException {
+    public SaleDTO getOne(Long id) throws SaleNotFoundException {
         SalesEntity sale = saleRepo.findById(id).get();
         if(sale == null){
             throw new SaleNotFoundException("This sale not found :(");
         }
 
-        return Sale.toModel(sale);
+        return SaleDTO.toModel(sale);
     }
 
     public String delete(Long id) throws SaleNotFoundException {
@@ -54,9 +50,9 @@ public class SaleService {
     }
 
 
-    public Sale update(SalesEntity editedSale,
-                       Long sale_id,
-                       Long book_id, Long employee_id) throws SaleNotFoundException {
+    public SaleDTO update(SalesEntity editedSale,
+                          Long sale_id,
+                          Long book_id, Long employee_id) throws SaleNotFoundException {
 
         SalesEntity sale = saleRepo.findById(sale_id).get();
         BookEntity book = bookRepo.findById(book_id).get();
@@ -73,6 +69,6 @@ public class SaleService {
         sale.setSum(editedSale.getSum());
         saleRepo.save(sale);
 
-        return Sale.toModel(sale);
+        return SaleDTO.toModel(sale);
     }
 }

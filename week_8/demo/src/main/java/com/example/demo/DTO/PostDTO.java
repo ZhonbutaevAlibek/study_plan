@@ -1,18 +1,17 @@
-package com.example.demo.models;
+package com.example.demo.DTO;
 
-import com.example.demo.entities.GenreEntity;
 import com.example.demo.entities.PostEntity;
 
-public class Post {
+public class PostDTO {
     private String post;
 
-    public static Post toModel(PostEntity entity){
-        Post model = new Post();
+    public static PostDTO toModel(PostEntity entity){
+        PostDTO model = new PostDTO();
         model.setPost(entity.getPost());
         return model;
     }
 
-    public Post() {
+    public PostDTO() {
     }
 
     public String getPost() {
