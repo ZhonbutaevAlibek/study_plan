@@ -10,17 +10,6 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#" th:href="@{/registration}">Registration</a>
-        </div>
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#" th:href="@{/login}">Sign in</a>
-        </div>
-    </div>
-</nav>
-
 <br>
 <br>
 <div class="container">
@@ -28,21 +17,15 @@
         <div class="col-md-6 col-md-offset-3">
 
             <div th:if="${param.success}">
-                <div class="alert alert-info">You've successfully registered to our awesome app!</div>
+                <div class="alert alert-info">Successfully registered!</div>
             </div>
 
             <div th:if="${param.error}">
-                <div class="alert alert-danger">A user with the same name already exists.</div>
+                <div class="alert alert-danger">User with this name already exists !</div>
             </div>
-
-
             <h1>Registration</h1>
 
-
-
-
             <form th:action="@{/registration}" method="post" th:object="${userForm}">
-
 
                 <div class="form-group">
                     <label class="control-label" for="userName"> Username </label>

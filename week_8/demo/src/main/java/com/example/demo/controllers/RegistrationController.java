@@ -1,7 +1,8 @@
 package com.example.demo.controllers;
 
 import com.example.demo.DTO.UserDTO;
-import com.example.demo.services.UserServiceImplements;
+import com.example.demo.entities.UserEntity;
+import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RegistrationController {
 
     @Autowired
-    private UserServiceImplements userService;
+    private UserService userService;
 
     @ModelAttribute("userForm")
     public UserDTO newUserDTO(){
@@ -27,8 +28,8 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public String registrationUser(@ModelAttribute("userForm")UserDTO userDTO){
-        userService.save(userDTO);
+    public String registrationUser(@ModelAttribute("userForm") UserEntity userEntity){
+        userService.save(userEntity);
         return "redirect:/registration?success";
     }
 }

@@ -1,7 +1,6 @@
 package com.example.demo.config;
 
 import com.example.demo.services.UserService;
-import com.example.demo.services.UserServiceImplements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
