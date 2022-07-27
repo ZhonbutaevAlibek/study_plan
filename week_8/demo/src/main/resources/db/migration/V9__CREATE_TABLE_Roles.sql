@@ -1,5 +1,0 @@
-CREATE TABLE roles
-(
-    role_id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    role VARCHAR(255) NULL
-);
