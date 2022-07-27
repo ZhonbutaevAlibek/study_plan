@@ -1,4 +1,4 @@
-# Study plan <br/>  
+# Neobis Study plan <br/>  
 ## information about this repository <br/>  
 Repository name: `Study plan` <br/>  
 Date of creation: `23.05.2022` <br/>  
