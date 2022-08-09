@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  mysql-demo:
+    container_name: mysql-demo
+    image: mysql
+    environment:
+      MYSQL_DATABASE=book_store
+      MYSQL_ROOT_PASSWORD=welcomE$rooT$
+  demo:
+    container_name: demo
+    image: demo
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-demo:5432/book_store
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSOWRD: welcomE$rooT$
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.mysql.Driver
+
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql-demo
